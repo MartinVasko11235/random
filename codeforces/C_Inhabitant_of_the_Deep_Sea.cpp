@@ -1,77 +1,147 @@
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 
 using namespace std;
+using namespace __gnu_pbds;
 
-typedef long long  ll;
+template<typename T>
+using indexed_tree = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
-typedef pair<int, int> pii;
+#define all(a) a.begin(), a.end()
+#define For(i, n)  for(int (i) = 0; (i) < (n); (i)++)
+#define rFor(i, n) for(int (i) = (n)-1; (i) >= 0; i--)
+#define loop(i, a, b) for(int (i) = (a); (i) < (b); (i)++)
+#define rloop(i, a, b) for(int (i) = (b) - 1; (i) >= (a); (i)--)
+#define each(i, v) for(auto& i : v)
 
+#define uset unordered_set
+#define umap unordered_map
+#define vec vector
+
+#define int long long
+
+#define ff first
+#define sd second
+
+typedef string str;
 typedef vector<int> vi;
+typedef vector<bool> vb;
+typedef pair<int, int> pii;
+typedef vector<string> vstr;
+typedef vector<vector<int>> vvi;
+typedef vector<pair<int, int>> vpii;
+typedef vector<vector<pair<int, int>>> vvpii;
 
-void solve(){
+const int mod = 1'000'000'007;
+const int inf = LONG_LONG_MAX/2;
 
-    int n, k;
-    cin >> n >> k;
+const string yes = "Yes";
+const string no = "No";
 
-    vi a(n);
+void __print(int x) {cerr << x;}
+void __print(long x) {cerr << x;}
+void __print(unsigned x) {cerr << x;}
+void __print(unsigned long x) {cerr << x;}
+void __print(unsigned long long x) {cerr << x;}
+void __print(float x) {cerr << x;}
+void __print(double x) {cerr << x;}
+void __print(long double x) {cerr << x;}
+void __print(char x) {cerr << '\'' << x << '\'';}
+void __print(const char *x) {cerr << '\"' << x << '\"';}
+void __print(const string &x) {cerr << '\"' << x << '\"';}
+void __print(bool x) {cerr << (x ? "true" : "false");}
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+template<typename T, typename V>
+void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ", "; __print(x.second); cerr << '}';}
+template<typename T>
+void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? ", " : ""), __print(i); cerr << "}";}
+void _print() {cerr << "]\n";}
+template <typename T, typename... V>
+void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
 
-    int l = 0, r = n-1;
+#ifdef ASDFG
+#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
+#else
+#define debug(x...)
+#endif
 
-    bool first = true;
 
-    while (l<=r){
-        int dmg = min(a[l], a[r]);
+struct Solution{
 
-        if (k < 2*dmg){
-            if (k%2 == 0){
-                a[l] -= k/2;
-                a[r] -= k/2;
-            }
-            else{
-                a[l] -= k/2;
-                a[r] -= k/2;
+    bool multiple_test_case = true;
+    bool is_interactive = false;
 
-                if (first) a[l] -= 1;
-                else a[r] -= 1;
-            }
+    void solve(){
+        int n, k; cin >> n >> k;
 
-            break;
+        vi a(n);
+
+        int sum = 0;
+
+        For(i, n) {
+            cin >> a[i];
+            sum += a[i];
         }
 
-        
-        k -= 2*dmg;
-        a[l] -= dmg;
-        if(l != r) a[r] -= dmg;
+        if (sum <= k){
+            cout << n << '\n';
+            return;
+        }
+        int fdmg = k&1 ? k/2 + 1 : k/2;
+        int bdmg = k/2;
 
-        first = !first;
+        int df = 0;
 
-        if (a[l] == 0) l++;
+        For(i, n){
+            
+            if (a[i] > fdmg) break;
 
-        if (a[r] == 0) r--;
+            fdmg -= a[i];
+
+            df++;
+        }
+
+        int db = 0;
+
+        rFor(i, n){
+            
+            if (a[i] > bdmg) break;
+
+            bdmg -= a[i];
+
+            db++;
+        }
         
-        if (k == 0) break;
-        
+
+        cout << min(n, df + db ) << '\n';
     }
 
+};
 
-    int res = 0;
+int32_t main(){
 
-    for (int i = 0; i < n; i++)
-    {
-        if (a[i] < 1) res++;
+    Solution solution;
+
+    if (!solution.is_interactive){
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+
+        #ifdef ASDFG
+        freopen("in.txt", "r", stdin);
+        freopen("out.txt", "w", stdout);
+        #endif
     }
 
-    cout << res << '\n';
+    #ifdef ASDFG 
+    freopen("log.txt", "w", stderr);
+    #endif
     
-}
+    int _t = 1;
 
-int main(){
+    if (solution.multiple_test_case) cin >> _t;
 
-    int tt; cin >> tt;
-
-    while (tt--) solve();
+    while(_t--) solution.solve();
 
     return 0;
 }

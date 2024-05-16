@@ -84,14 +84,9 @@ struct Solution{
 
         vvi dp(n, vi(k+1));
 
-        vi pref_sum(n+1);
 
-        pref_sum[0] = 0;
-
-        For(i, n){
-
-            pref_sum[i+1] = pref_sum[i] + a[i];
-
+        For(i, k+1){
+            dp[0][i] = a[0];
         }
 
         For(i, n){
@@ -100,14 +95,14 @@ struct Solution{
                 int mn = dp[i-1][j];
 
                 For(k, min(k+1, j)){
-                    mn = min(mn, dp[i-k][k] + a[i]*(j-k));
+                    mn = min(mn, dp[i-k][k] + min(a[i], a[i-k])*(j-k));
                 }
 
                 dp[i][j] = mn;
             }
         }
 
-        cout << dp[n][k] << '\n';
+        cout << dp[n-1][k] << '\n';
     }
 
 };
