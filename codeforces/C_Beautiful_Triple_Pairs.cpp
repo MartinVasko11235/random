@@ -6,9 +6,7 @@ using namespace std;
 using namespace __gnu_pbds;
 
 template<typename T>
-using indexed_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-#define int long long
+using indexed_tree = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define all(a) a.begin(), a.end()
 #define For(i, n)  for(int (i) = 0; (i) < (n); (i)++)
@@ -20,6 +18,8 @@ using indexed_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
 #define uset unordered_set
 #define umap unordered_map
 #define vec vector
+
+#define int long long
 
 #define ff first
 #define sd second
@@ -42,7 +42,8 @@ const string no = "NO\n";
 template<typename T>
 ostream &operator<<(ostream &os, const vec<T> &a){
     For(i, a.size()){
-        cout << a[i] << " \n"[i == n-1];
+        if(i == a.size()-1) os << a[i];
+        else os << a[i] << ' ';
     }
     return os;
 }
@@ -55,11 +56,19 @@ ostream &operator<<(ostream &os, const vec<T> &a){
 
 struct Solution{
 
-    bool multiple_test_case = true;
+    bool multiple_test_case = false;
     bool is_interactive = false;
 
     void solve(){
         
+        vi a = {1, 2, 3, 4, 5};
+
+        char d = 'd';
+
+        vec<char> b = {'a', 'b', 'c', d};
+
+        debug(a);
+        debug(b);
     }
 
 };

@@ -3,7 +3,7 @@ using namespace std;
 
 
 
-class segment_tree{
+struct segment_tree{
 
     vector<int> t;
 
@@ -67,7 +67,6 @@ class segment_tree{
         return __operator(__get(v<<1, tl, tm, l, min(r, tm)), __get((v<<1)|1, tm+1, tr, max(l, tm+1), r));
     }
 
-    public:
 
     segment_tree(vector<int> a){
         n = a.size();

@@ -6,9 +6,7 @@ using namespace std;
 using namespace __gnu_pbds;
 
 template<typename T>
-using indexed_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-#define int long long
+using indexed_tree = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define all(a) a.begin(), a.end()
 #define For(i, n)  for(int (i) = 0; (i) < (n); (i)++)
@@ -20,6 +18,8 @@ using indexed_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
 #define uset unordered_set
 #define umap unordered_map
 #define vec vector
+
+#define int long long
 
 #define ff first
 #define sd second
@@ -36,22 +36,36 @@ typedef vector<vector<pair<int, int>>> vvpii;
 const int mod = 1'000'000'007;
 const int inf = LONG_LONG_MAX/2;
 
-const string yes = "YES\n";
-const string no = "NO\n";
+const string yes = "Yes";
+const string no = "No";
 
+void __print(int x) {cerr << x;}
+void __print(long x) {cerr << x;}
+void __print(unsigned x) {cerr << x;}
+void __print(unsigned long x) {cerr << x;}
+void __print(unsigned long long x) {cerr << x;}
+void __print(float x) {cerr << x;}
+void __print(double x) {cerr << x;}
+void __print(long double x) {cerr << x;}
+void __print(char x) {cerr << '\'' << x << '\'';}
+void __print(const char *x) {cerr << '\"' << x << '\"';}
+void __print(const string &x) {cerr << '\"' << x << '\"';}
+void __print(bool x) {cerr << (x ? "true" : "false");}
+
+template<typename T, typename V>
+void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ", "; __print(x.second); cerr << '}';}
 template<typename T>
-ostream &operator<<(ostream &os, const vec<T> &a){
-    For(i, a.size()){
-        cout << a[i] << " \n"[i == n-1];
-    }
-    return os;
-}
+void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? ", " : ""), __print(i); cerr << "}";}
+void _print() {cerr << "]\n";}
+template <typename T, typename... V>
+void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
 
 #ifdef ASDFG
-#define debug(a) cerr << #a << " = " << a << '\n';
+#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
 #else
-#define debug(a)
+#define debug(x...)
 #endif
+
 
 struct Solution{
 
@@ -59,7 +73,13 @@ struct Solution{
     bool is_interactive = false;
 
     void solve(){
-        
+        int a, b, c;
+        cin >> a >> b >> c;
+
+
+        if (a == b) cout << c << '\n';
+        else if (a == c) cout << b << '\n';
+        else cout << a << '\n';
     }
 
 };

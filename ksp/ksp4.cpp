@@ -42,7 +42,8 @@ const string no = "NO\n";
 template<typename T>
 ostream &operator<<(ostream &os, const vec<T> &a){
     For(i, a.size()){
-        cout << a[i] << " \n"[i == n-1];
+        if(i == a.size()-1) os << a[i];
+        else os << a[i] << ' ';
     }
     return os;
 }
@@ -55,11 +56,39 @@ ostream &operator<<(ostream &os, const vec<T> &a){
 
 struct Solution{
 
-    bool multiple_test_case = true;
-    bool is_interactive = false;
+    bool multiple_test_case = false;
+    bool is_interactive = true;
 
     void solve(){
-        
+        int n; cin >> n;
+
+        vb used(n, false);
+        int mx = n-1;
+
+        int curr;
+
+        For(i,n-1){
+            cin >> curr;
+            curr--;
+
+            if (!used[curr]){
+                cout << curr+1 << '\n';
+                cout.flush();
+                used[curr] = true;
+            }
+            else{
+                while(used[mx]) mx--;
+                cout << mx+1 << '\n';
+                cout.flush();
+                used[mx] = true;
+            }
+        }
+
+        while(used[mx]) mx--;
+        cout << mx+1 << '\n';
+        cout.flush();
+        used[mx] = true;
+
     }
 
 };

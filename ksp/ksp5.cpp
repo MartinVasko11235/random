@@ -42,7 +42,8 @@ const string no = "NO\n";
 template<typename T>
 ostream &operator<<(ostream &os, const vec<T> &a){
     For(i, a.size()){
-        cout << a[i] << " \n"[i == n-1];
+        if(i == a.size()-1) os << a[i];
+        else os << a[i] << ' ';
     }
     return os;
 }
@@ -55,10 +56,72 @@ ostream &operator<<(ostream &os, const vec<T> &a){
 
 struct Solution{
 
-    bool multiple_test_case = true;
+    bool multiple_test_case = false;
     bool is_interactive = false;
 
     void solve(){
+        int p, k, n; // p je premenovane r
+        cin >> p >> k >> n;
+
+        vi a(n);
+
+        For(i, n){
+            cin >> a[i];
+        }
+
+        vi pref(n);
+        pref[0] = a[0];
+
+        loop(i, 1, n){
+            pref[i] = a[i] + pref[i-1];
+        }
+
+        auto sum = [&](int l, int r){
+            if (l == 0) return pref[r];
+            if (r < l) return pref[n-1] - pref[l-1] + pref[r];
+
+            return pref[r] - pref[l-1];
+        };
+
+        int idx = 0;
+
+        vi turn(n, -1);
+        vi total_sum(n, 0);
+
+        int curr_turn = 0;
+        int curr_sum = 0;
+
+        while(turn[idx] == -1){
+            turn[idx] = curr_turn;
+            int l = 0;
+            int r = n-1;
+
+            while (l <= r){
+                int m = (l+r)/2;
+
+                int sm = sum(idx, m);
+
+                if (sm == p){
+                    r = m;
+                    break;
+                }
+                else if (sm < p){
+                    l = m + 1;
+                }
+                else {
+                    r = m - 1;
+                }
+            }
+            curr_turn++;
+            curr_sum += sum(idx, r);
+            idx = r;
+            total_sum[idx] = curr_sum;
+
+            if (curr_turn == k){
+                cout << curr_sum << '\n';
+            }
+        }
+
         
     }
 

@@ -36,13 +36,14 @@ typedef vector<vector<pair<int, int>>> vvpii;
 const int mod = 1'000'000'007;
 const int inf = LONG_LONG_MAX/2;
 
-const string yes = "YES\n";
-const string no = "NO\n";
+const string yes = "ano\n";
+const string no = "nie\n";
 
 template<typename T>
 ostream &operator<<(ostream &os, const vec<T> &a){
     For(i, a.size()){
-        cout << a[i] << " \n"[i == n-1];
+        if(i == a.size()-1) os << a[i];
+        else os << a[i] << ' ';
     }
     return os;
 }
@@ -55,11 +56,77 @@ ostream &operator<<(ostream &os, const vec<T> &a){
 
 struct Solution{
 
-    bool multiple_test_case = true;
+    bool multiple_test_case = false;
     bool is_interactive = false;
 
     void solve(){
-        
+        int n, m;
+        cin >> n >> m;
+
+        vvi adj(n, vi());
+
+        vi rank(n, 0);
+
+        For(i, m){
+            int a, b;
+            cin >> a >> b;
+            adj[a].push_back(b);
+            adj[b].push_back(a);
+            rank[a]++;
+            rank[b]++;
+        }
+
+        debug(rank);
+
+        queue<int> rank_one;
+        vb used(n, false);
+
+        For(i, n){
+            if (rank[i] == 1){
+                rank_one.push(i);
+                used[i] = true;
+            }
+            else if(rank[i] == 0){
+                cout << no;
+                return;
+            }
+        }
+
+        while(!rank_one.empty()){
+
+            int curr = rank_one.front();
+            rank_one.pop();
+
+            used[curr] = true;
+
+            debug(rank);
+
+            bool found = false;
+
+            each(i, adj[curr]){
+                if (!used[i]){
+                    if (rank[i] > 1){
+                        rank[i]--;
+                        if (rank[i] == 1){
+                            rank_one.push(i);
+                        }
+                        found = true;
+                    }
+                    else{
+                        cout << no;
+                        return;
+                    }
+                }
+            }
+
+            if (!found){
+                cout << no;
+                return;
+            }
+        }
+
+        cout << yes;
+
     }
 
 };

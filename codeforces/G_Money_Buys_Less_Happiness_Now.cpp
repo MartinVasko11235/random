@@ -6,7 +6,7 @@ using namespace std;
 using namespace __gnu_pbds;
 
 template<typename T>
-using indexed_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+using indexed_tree = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define int long long
 
@@ -42,7 +42,8 @@ const string no = "NO\n";
 template<typename T>
 ostream &operator<<(ostream &os, const vec<T> &a){
     For(i, a.size()){
-        cout << a[i] << " \n"[i == n-1];
+        if(i == a.size()-1) os << a[i];
+        else os << a[i] << ' ';
     }
     return os;
 }
@@ -59,7 +60,37 @@ struct Solution{
     bool is_interactive = false;
 
     void solve(){
-        
+        int m, x;
+        cin >> m >> x;
+
+        int res = 0;
+
+        int sum = 0;
+
+        int spend = 0;
+
+        priority_queue<int> q;
+
+        For(i, m){
+            int c; cin >> c;
+
+            if (sum >= c + spend){
+                res++;
+                spend += c;
+                q.push(c);
+            }
+            else if(!q.empty()){
+                if(c < q.top()){
+                    spend = spend - q.top() + c;
+                    q.pop();
+                    q.push(c);
+                }
+            }
+
+            sum += x;
+        }
+
+        cout << res << '\n';
     }
 
 };
