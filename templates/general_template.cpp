@@ -42,7 +42,7 @@ const string no = "NO\n";
 template<typename T>
 ostream &operator<<(ostream &os, const vec<T> &a){
     For(i, a.size()){
-        cout << a[i] << " \n"[i == n-1];
+        os << a[i] << " \n"[i == a.size()-1];
     }
     return os;
 }

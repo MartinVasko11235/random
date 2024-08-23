@@ -119,7 +119,7 @@ struct segment_tree{
 
 int main(){
 
-    int n; cin >> n;
+    int n = 5; 
 
     memo.assign(n+1, -1);
     memo[0] = 0;

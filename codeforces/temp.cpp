@@ -74,7 +74,7 @@ struct Solution{
     bool is_interactive = false;
 
     void solve(){
-        
+
     }
 
 };

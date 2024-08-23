@@ -1,0 +1,12 @@
+Hello World
+You have entered: 1 arguments.
+argument 1: ./out
+6
+7
+6
+6
+15
+6 ahoj 8
+nie
+0
+22

@@ -67,6 +67,10 @@ struct segment_tree{
         return __operator(__get(v<<1, tl, tm, l, min(r, tm)), __get((v<<1)|1, tm+1, tr, max(l, tm+1), r));
     }
 
+    segment_tree(int n){
+        this->n = n;
+        t.resize(4*n, neutral_value);
+    }
 
     segment_tree(vector<int> a){
         n = a.size();
