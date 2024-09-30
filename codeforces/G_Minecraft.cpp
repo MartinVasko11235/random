@@ -11,8 +11,6 @@ using namespace __gnu_pbds;
 template<typename T>
 using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
-#define int long long
-
 #define ALL(a) a.begin(), a.end()
 #define FOR(i, n)  for(int (i) = 0; (i) < (n); (i)++)
 #define RFOR(i, n) for(int (i) = (n)-1; (i) >= 0; i--)
@@ -77,8 +75,8 @@ ostream &operator<<(ostream &os, const vec<T> &a){
 #endif
 
 struct node{
-    int value, choice, parent;
-    node(int v, int c, int p) : value(v), choice(c), parent(p){};
+    int choice, parent;
+    node(int c, int p) : choice(c), parent(p){};
 };
 
 void solve(){
@@ -96,29 +94,30 @@ void solve(){
         }
     }
 
-    vec<umap<int, node>> arr(k);
+    vec<vec<node>> arr(k, vec<node>(2*n+1, node(-1, -1)));
 
     if ((s[0] == '1' ? 1 : 0) - ones[0] >= 0){
-        arr[0].insert({(s[0] == '1' ? 1 : 0) - ones[0], node((s[0] == '1' ? 1 : 0) - ones[0], 0, -1)});
+        arr[0][(s[0] == '1' ? 1 : 0) - ones[0]] = node(0, -1);
     }
     if ((s[0] == '1' ? 1 : 0) - (n-ones[0]) >= 0){
-        arr[0].insert({(s[0] == '1' ? 1 : 0) - (n-ones[0]), node((s[0] == '1' ? 1 : 0) - (n-ones[0]), 1, -1)});
+        arr[0][(s[0] == '1' ? 1 : 0) - (n-ones[0])] = node(1, -1);
     }
 
     LOOP(i, 1, k){
-        EACH(j, arr[i-1]){
-            int new_value_0 = j.second.value * 2 - ones[i] + (s[i] == '1' ? 1 : 0);
+        FOR(j, arr[i-1].SZ){
+            if (arr[i-1][j].choice == -1) continue;
+            int new_value_0 = j * 2 - ones[i] + (s[i] == '1' ? 1 : 0);
             if (new_value_0 <= 2*n && new_value_0 >= 0){
-                arr[i].insert({new_value_0, node(new_value_0, 0, j.first)});
+                arr[i][new_value_0] = node(0, j);
             }
-            int new_value_1 = j.second.value * 2 - (n-ones[i]) + (s[i] == '1' ? 1 : 0);
+            int new_value_1 = j * 2 - (n-ones[i]) + (s[i] == '1' ? 1 : 0);
             if (new_value_1 <= 2*n && new_value_1 >= 0){
-                arr[i].insert({new_value_1, node(new_value_1, 1, j.first)});
+                arr[i][new_value_1] =  node(1, j);
             }
         }
     }
     
-    if (arr[k-1].find(0) == arr[k-1].end()){
+    if (arr[k-1][0].choice == -1){
         cout << "-1\n";
         return;
     }

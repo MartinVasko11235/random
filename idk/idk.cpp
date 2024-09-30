@@ -1,27 +1,28 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
 int main() {
 
-    int v[] = {1, 1, 1, 2, 2, 2, 3, 3, 3};
-    unordered_set<int> dobre;
-    unordered_set<int> vsetky;
+    int n;
+    cin >> n;
 
+    vector<int> a;
 
+    for (int i = 0; i < n; i++){
+        int temp;
+        cin >> temp;
+        a.push_back(temp); //alebo a.emplace_back(temp)
+    }
+
+    // alebo takto:
+
+    vector<int> b(n);
+
+    for (int i = 0; i < n; i++){
+        cin >> b[i];
+    }
     
-    do
-    {
-        int temp = v[0] + 10 * v[1] + 100 * v[2] + 1000 * v[3] + 10000 * v[4] + 100000 * v[5] + 1000000 * v[6] + 10000000 * v[7] + 100000000 * v[8];
-        if(v[0] != 1 && v[1]!= 1 && v[2] != 1){
-            dobre.insert(temp);
-        }
-        vsetky.insert(temp);
-
-    } while (next_permutation(v, v + 9));
-    
-    cout << dobre.size() << endl;
-    cout << vsetky.size() << endl;
-
-    
+    return 0;    
 }
