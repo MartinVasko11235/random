@@ -1,3 +1,4 @@
+
 //#pragma GCC optimize ("Ofast")
 //#pragma GCC target ("avx2")
 
@@ -72,9 +73,24 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #endif
 
 void solve(){
-    int n; cin >> n;
+	int r, k; cin >> r >> k;
 
-    
+	set<int> safe;
+
+	int tmp;
+	
+	FOR(i, r){
+		cin >> tmp;
+		safe.insert(tmp);
+	}
+
+	vvi dp(202);
+
+	dp[0].push_back(1);
+
+	LOOP(i, 1, 202){
+		
+	}
 }
 
 
@@ -84,7 +100,7 @@ int32_t main(){
     
     int _t = 1;
 
-    cin >> _t;
+    //cin >> _t;
 
     while (_t--) solve();
 

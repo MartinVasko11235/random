@@ -1,3 +1,4 @@
+
 //#pragma GCC optimize ("Ofast")
 //#pragma GCC target ("avx2")
 
@@ -71,12 +72,33 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #define debug(a)
 #endif
 
-void solve(){
-    int n; cin >> n;
+int power(int a, int b){
+	int res = 1;
+	FOR(i, b){
+		res *= a;
+	}
 
-    
+	return res;
 }
 
+void solve(){
+	int n; cin >> n;
+
+	int temp;
+
+	int res = 0;
+	
+	FOR(i, n){
+		cin >> temp;	
+
+		if (!temp){
+			res += power((int)2, i);
+		}
+	}
+
+
+	print(res);
+}
 
 int32_t main(){
 
@@ -84,7 +106,7 @@ int32_t main(){
     
     int _t = 1;
 
-    cin >> _t;
+    //cin >> _t;
 
     while (_t--) solve();
 

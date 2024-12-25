@@ -1,3 +1,4 @@
+
 //#pragma GCC optimize ("Ofast")
 //#pragma GCC target ("avx2")
 
@@ -72,9 +73,69 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #endif
 
 void solve(){
-    int n; cin >> n;
+	str s;
+	cin >> s;
 
-    
+	int n, k; cin >> n >> k;
+
+	vstr abc(26);
+
+	FOR(i, 26){
+		cin >> abc[i];
+		if (abc[i] == "#") abc[i] = "";
+	}
+
+
+	abc.EB(s);
+
+	vvi len(n+1, vi(26, 0));
+
+	FOR(i, 26) {
+		len[0][i] = 1;
+	}
+
+	LOOP(i, 1, n+1){
+		FOR(j, 26){
+			EACH(c, abc[j]){
+				len[i][j] += len[i-1][c - 'a'];
+			}
+		}
+	}
+
+	int depht = n;
+
+	int i = 0;
+
+	int abc_i = 26;
+
+	int pos = 1;
+
+	while(true){
+
+		if (depht == 0 && pos == k){
+			print(abc[abc_i][i]);
+			return;
+		}
+
+		if (abc[abc_i].size() <= i){
+			print("Neexistuje");
+			return;
+		}
+
+		if (pos + len[depht][abc[abc_i][i] - 'a'] <= k){
+			pos += len[depht][abc[abc_i][i] - 'a'];
+			i++;
+		}
+		else {
+			// if (depht == 0) {
+			// 	pos++;
+			// 	continue;
+			// }
+			depht--;
+			abc_i = abc[abc_i][i] - 'a';
+			i = 0;
+		}
+	}
 }
 
 
@@ -84,7 +145,7 @@ int32_t main(){
     
     int _t = 1;
 
-    cin >> _t;
+    //cin >> _t;
 
     while (_t--) solve();
 

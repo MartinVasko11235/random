@@ -72,9 +72,28 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #endif
 
 void solve(){
-    int n; cin >> n;
 
-    
+    vi a, b;
+
+    int x, y;
+
+    while (true){
+        cin >> x >> y;
+        if (x == -1) break;
+        a.EB(x);
+        b.EB(y);
+    }
+    int res = 0; 
+    EACH(i, a){
+        int count = 0;
+        EACH(j, b){
+            if (i == j) count++;
+        }
+        res += i*count;
+    }
+
+    print(res);
+
 }
 
 
@@ -84,7 +103,7 @@ int32_t main(){
     
     int _t = 1;
 
-    cin >> _t;
+    //cin >> _t;
 
     while (_t--) solve();
 

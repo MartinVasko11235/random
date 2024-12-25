@@ -1,3 +1,4 @@
+
 //#pragma GCC optimize ("Ofast")
 //#pragma GCC target ("avx2")
 
@@ -72,19 +73,23 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #endif
 
 void solve(){
-    int n; cin >> n;
 
-    
+	double res = 0;
+
+	FOR(i, 40){
+		res = (double)(res*1.09 + 500);
+	}
+
+	cout << cout.precision(100) << res << '\n';
+
 }
-
-
 int32_t main(){
 
     ios_base::sync_with_stdio(false); cin.tie(nullptr);
     
     int _t = 1;
 
-    cin >> _t;
+    //cin >> _t;
 
     while (_t--) solve();
 

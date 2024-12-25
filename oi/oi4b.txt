@@ -1,0 +1,19 @@
+minus_jeden: const -1
+nula: const 0
+jeden: const 1
+dva: const 2
+i: id
+vstup: input 1
+l: right vstup
+m: != l vstup
+tmp: if m i minus_jeden
+s: sort tmp
+l2: left tmp
+mod: - tmp l2
+sort mod
+l3: right mod
+max: < l3 mod
+t: if max jeden dva
+t2: if i t nula
+s2: sort t2
+res: right vstup

@@ -1,0 +1,15 @@
+nula: const 0
+jeden: const 1
+dva: const 2
+i: id
+vstup: input 1
+s: sort vstup
+l: left vstup
+min: > l vstup
+t: if min jeden dva
+temp: if i t nula
+s2: sort temp
+res: right vstup
+is_zero: ! i
+tmp2: & is_zero min
+res2: if tmp2 vstup res

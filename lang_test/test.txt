@@ -1,0 +1,145 @@
+
+struct_name = int var_name1, bool var_name2, int find<int, vec<int>>;
+
+
+find_vec = int val, vec<int> arr;
+
+var_name = value;
+
+
+bool find int val, vec<int> arr = {
+    for i arr {
+        if i == val {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool find = (int val, vec<int> arr){
+    for arr (int i) {
+        if i == val {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool find = (int val, vec<int> arr) {
+    arr . for (int i) {
+        if i == val {
+            return true;
+        }
+    }
+    false
+}
+
+fn<int, (int, vec<int>)> func;
+
+ahoj<T> = (T val, vec<T> arr);
+
+int a = if b == 3 {5} else {7};
+
+
+find val arr = {
+    for i arr {
+        if i == val {
+            return true; 
+        }
+    }
+    return false;
+}
+
+find val arr = for arr -> _ i = 
+
+void sort<T> mut<vec<T>> arr bool reverse = {
+
+}
+
+# comment
+
+# assign variable
+type var_name = value;
+
+# reassign variable
+var_name = new_value;
+
+# struct
+struct_name = (
+    type1 var_name1,
+    type2 var_name2
+);
+
+# anonymous struct
+(
+    type1 var_name1,
+    type2 var_name2
+);
+# or
+(type1, type2);
+
+# initializing struct
+struct_name var_name = (
+    var_name1 = value1,
+    var_name2 = value2
+);
+# or
+struct_name var_name = (value1, value2);
+
+# accessing fields in struct
+var_name.field_name;
+# or
+var_name{return field_name;};
+# or
+var_name{field_name};
+
+# function
+type func_name = (type1 var_name1, type2 var_name2){
+    # instructions
+    return res;
+}
+# or
+type func_name = input_struct{
+    # instructions
+    return res;
+}
+# or
+type func_name = input_struct{
+    # instructions
+    res
+}
+
+# calling function
+func_name(arg1, arg2)
+# or
+arg1.func_name(arg2)
+
+find_vec asd = 0, _;
+asd[arr] = 1..10;
+
+bool is_in_vec = find asd;
+find_vec[val] = 5;
+bool is_in_vec2 = asd.find
+
+mut<int> ahoj;
+
+struct_name<type> = type var_name;
+
+struct_name[field_name];
+
+
+fn find(int val, vec<int> arr) -> bool{
+    for i in arr {
+        if i == val {
+            return true;
+        }
+    }
+    false
+}
+
+struct asd {
+    int a;
+    int b;
+    int c;
+    bool find(asd x, vec<asd> arr);
+}

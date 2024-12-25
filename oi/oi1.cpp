@@ -24,13 +24,6 @@ using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
 #define EB emplace_back
 #define SZ size()
 
-struct pii{
-    int x, y;
-    pii(){};
-    pii(int x, int y) : x(x), y(y) {};
-    auto operator<=>(const pii&) const = default;       
-};
-
 template<typename T>
 using uset = unordered_set<T>;
 template<typename T, typename U>
@@ -42,6 +35,7 @@ using priorq = priority_queue<T>;
 template<typename T>
 using rpriorq = priority_queue<T, vec<T>, greater<T>>;
 
+using pii = pair<int, int>;
 using str = string;
 using vi = vector<int>;
 using vb = vector<bool>;
@@ -50,14 +44,13 @@ using vvi = vector<vector<int>>;
 using vpii = vector<pii>;
 using vvpii = vector<vector<pii>>;
 
-constexpr int mod = 1'000'000'007;
-//constexpr int mod = 998'244'353;
-constexpr int inf = LONG_LONG_MAX/2;
-//constexpr int inf = INT_MAX/2;
+const int mod = 1000000007;
+//const int mod = 998244353;
+const int inf = LONG_LONG_MAX/2;
+//const int inf = INT_MAX/2;
 
 const string yes = "YES";
 const string no = "NO";
-
 
 template<typename T>
 ostream &operator<<(ostream &os, const vec<T> &a){
@@ -67,90 +60,55 @@ ostream &operator<<(ostream &os, const vec<T> &a){
     }
     return os;
 }
+
 template<typename T>
 void print(T t){cout << t << '\n';}
 template<typename T, typename ... Args>
 void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 
-// #ifndef ONLINE_JUDGE
-// #define debug(a) cerr << #a << " = " << a << '\n';
-// #else
-// #define debug(a)
-// #endif
+#ifdef LOCAL
+#define debug(a) cerr << #a << " = " << a << '\n';
+#else
+#define debug(a)
+#endif
+
+struct edge{
+	int a, b, d;
+};
 
 void solve(){
 	int t, n; cin >> t >> n;
 
-	vvpii events(t);
-	vi in(t, 0);
-
+	vec<edge> edges(n);
+	int a, b, d;
 	FOR(i, n){
-		int a, b, d;
 		cin >> a >> b >> d;
 		a--; b--;
+		edges[i] = {a, b, -d};
+	}
+	vi dist(t, 0);
 
-		if (d < 0){
-			swap(a, b);
-			d *= -1;
-		}
+	bool changed;
 
-		events[b].EB(pii(a, d));
-
-		in[a]++;
-		
+	
+	FOR(i, t){
+		changed = false;
+		EACH(e, edges){
+			if (dist[e.b] - dist[e.a] > e.d){
+				changed = true;
+				dist[e.b] = dist[e.a] + e.d;
+			}
+		}	
+		if (!changed) break;
 	}
 
-
-	int min_val = -1'000'000'000;
-
-	vi res(t, min_val - 1);
-	vi latest(t, -min_val + 1);
-
-	queue<pii> q;
-
-	FOR(i, t){
-		if (in[i] == 0){
-			q.push(pii(i, min_val));
-			res[i] = min_val;
-			latest[i] = min_val;
-		}
-	}	
-
-	if (q.empty()){
+	if (changed){
 		print("neexistuje");
 		return;
 	}
 
-	vb visited(t, false);
-	
+	print(dist);
 
-	while (q.empty()){
-		pii curr = q.front();
-		q.pop();
-
-		if (curr.y > latest[curr.x]){
-			print("neexistuje");
-			return;
-		}
-
-		res[curr.x] = max(curr.y, res[curr.x]);
-		if (res[curr.x] > 1'000'000'000){
-			print("neexistuje");
-			return;
-		}
-		in[curr.x]--;
-		
-		if (in[curr.x] == 0){
-			EACH(i, events[curr.x]){
-				q.push(pii(i.x, res[curr.x]+i.y));
-			}
-			latest[curr.x] = res[curr.x];
-		}
-	}
-
-	print(res);
-	
-	    
 }
 
 
@@ -160,7 +118,7 @@ int32_t main(){
     
     int _t = 1;
 
-    // cin >> _t;
+    //cin >> _t;
 
     while (_t--) solve();
 

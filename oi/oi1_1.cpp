@@ -75,14 +75,46 @@ void solve(){
 
 	int t, n; cin >> t >> n;
 
-	vvpii adj(t);
+	vi res(t, -1e9);
+	vi last_update(t, -1);
+
+	vvpii rules(t);
+
+	auto update = [&](int& time, int v, auto&& update) -> bool{
+		bool ret = true;
+		EACH(c, rules[v]){
+			if (res[c.first] - res[v] < c.second){
+				if (last_update[c.first] == time){
+					return false;
+				}
+				res[c.first] = res[v] + c.second;
+				last_update[c.first] = time;
+				ret &= update(time, c.first, update);
+			}
+		}
+		return ret;
+	};
+
+	int a, b, d;
 
 	FOR(i, n){
-		int a, b, d;
 		cin >> a >> b >> d;
+		a--; b--;
 
-		adj[a].EB(pii(b, d));
+		rules[b].EB(pii(a, d));
+
+		if (res[b] + d > res[a]){
+			res[a] = res[b] + d;
+			last_update[a] = i;
+			if (!update(i, a, update)){
+				cout << "neexistuje\n";
+				return;
+			}
+		}
 	}
+
+	cout << res << '\n';
+	
 
 }
 

@@ -71,16 +71,55 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #define debug(a)
 #endif
 
+
 void solve(){
     int n; cin >> n;
+    vi a(n);
+    FOR(i, n-1){
+        cin >> a[i];
+        a[i]--;
+    }
 
-    
+    vvi adj(n, vi());
+
+    int x, y;
+
+    FOR(i, n-1){
+        cin >> x >> y;
+        x--; y--;
+        adj[x].EB(y);
+        adj[y].EB(x);
+    }
+
+    vi last(n, 0);
+    vi res(n, -1);
+
+    auto dfs = [&](int v, int p, int depht, auto&& dfs) -> void{
+        res[v] = depht - last[a[v]];
+        int org = last[a[v]];
+        last[a[v]] = depht;
+        EACH(c, adj[v]){
+            if (c != p){
+                dfs(c, v, depht+1, dfs);
+            }
+        }
+        last[a[v]] = org;
+    };
+
+    dfs(n-1, -1, 0, dfs);
+
+    FOR(i, n-1){
+        cout << res[i] << (i == n-2 ? '\n' : ' ');
+    }
+
 }
-
 
 int32_t main(){
 
     ios_base::sync_with_stdio(false); cin.tie(nullptr);
+
+    freopen("io/in.txt", "r", stdin);
+    freopen("io/out.txt", "w", stdout);
     
     int _t = 1;
 

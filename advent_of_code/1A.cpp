@@ -72,9 +72,26 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #endif
 
 void solve(){
-    int n; cin >> n;
 
-    
+    vi a, b;
+
+    int x, y;
+
+    while (true){
+        cin >> x >> y;
+        if (x == -1) break;
+        a.EB(x);
+        b.EB(y);
+    }
+    sort(ALL(a));
+    sort(ALL(b));
+    int res = 0;
+    FOR(i, a.size()){
+        res += abs(a[i] - b[i]);
+    }
+
+    print(res);
+
 }
 
 
@@ -84,7 +101,7 @@ int32_t main(){
     
     int _t = 1;
 
-    cin >> _t;
+    //cin >> _t;
 
     while (_t--) solve();
 

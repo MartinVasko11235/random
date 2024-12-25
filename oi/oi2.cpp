@@ -1,3 +1,4 @@
+
 //#pragma GCC optimize ("Ofast")
 //#pragma GCC target ("avx2")
 
@@ -72,9 +73,42 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #endif
 
 void solve(){
-    int n; cin >> n;
+	int n; cin >> n;
 
-    
+	char u;
+	int t, c;
+
+	vi best(n, 0);
+	vi last_buy(n, -1);
+	vi last_cost(n, 0);
+
+	FOR(i, n){
+		cin >> u >> t >> c;
+		t--;
+		if (u == 'N'){
+			if (last_buy[t] == -1 || i == 0){
+				last_buy[t] = i;
+				last_cost[t] = c;
+			}
+			else if (best[i-1] - best[last_buy[t]] > c - last_cost[t]){
+				last_buy[t] = i;
+				last_cost[t] = c;
+			}
+			if (i > 0) best[i] = best[i-1];
+		}
+		else {
+			if (last_buy[t] == -1){ 
+				if (i > 0) best[i] = best[i-1];
+				continue;
+			}
+			if (i > 0) {
+				best[i] = max(best[i-1], best[last_buy[t]] + c - last_cost[t]);
+			}
+		}
+
+	}
+
+	print(best[n-1]);
 }
 
 
@@ -84,7 +118,7 @@ int32_t main(){
     
     int _t = 1;
 
-    cin >> _t;
+    //cin >> _t;
 
     while (_t--) solve();
 

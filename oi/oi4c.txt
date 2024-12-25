@@ -1,0 +1,68 @@
+vela: const 0
+_2: const 2
+_4: const 4
+_8: const 8
+_16: const 16
+_32: const 32
+_64: const 64
+_128: const 128
+_256: const 256
+_512: const 512
+_1024: const 1024
+_2048: const 2048
+vstup: input 1
+i: id
+l2: right vstup
+t2: + vstup l2
+mod2: % i _2
+s2: if mod2 vela t2
+sort mod2
+l4: right s2
+t4: + s2 l4
+mod4: % i _4    
+s4: if mod4 vela t4
+sort mod4
+l8: right s4
+t8: + s4 l8
+mod8: % i _8
+s8: if mod8 vela t8
+sort mod8
+l16: right s8
+t16: + s8 l16
+mod16: % i _16
+s16: if mod16 vela t16
+sort mod16
+l32: right s16
+t32: + s16 l32
+mod32: % i _32
+s32: if mod32 vela t32
+sort mod32
+l64: right s32
+t64: + s32 l64
+mod64: % i _64
+s64: if mod64 vela t64
+sort mod64
+l128: right s64
+t128: + s64 l128
+mod128: % i _128
+s128: if mod128 vela t128
+sort mod128
+l256: right s128
+t256: + s128 l256
+mod256: % i _256
+s256: if mod256 vela t256
+sort mod256
+l512: right s256
+t512: + s256 l512
+mod512: % i _512
+s512: if mod512 vela t512
+sort mod512
+l1024: right s512
+t1024: + s512 l1024
+mod1024: % i _1024
+s1024: if mod1024 vela t1024
+sort mod1024
+l2048: right s1024
+t2048: + s1024 l2048
+mod2048: % i _2048
+s2048: if mod2048 vela t2048

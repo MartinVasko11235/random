@@ -1,9 +1,7 @@
+#include <iostream>
 
-
-#include <cstdlib>
 int main(){
-	system("kitty hx");
-	// system("hx ~/random/ksp/ksp2/idk.cpp");
 
+	std::cout << "hello world\n";
 	return 0;
 }

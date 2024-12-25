@@ -1,0 +1,1 @@
+int asd(int x){return 2*x;}

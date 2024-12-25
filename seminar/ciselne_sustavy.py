@@ -1,4 +1,3 @@
-
 def to_base_n(n: int, base: int) -> str:
 
     if base > 9:
@@ -35,14 +34,17 @@ def to_roman(n: int) -> str:
 
     i = 1
 
-    literals = ["M", "D", "C", "L", "X", "V", "I"]
+    digits = ["M", "D", "C", "L", "X", "V", "I"]
 
     while n > 0:
 
         a = n // (100 // 10 ** (i//2))
         n = n % (100 // 10 ** (i//2))
 
-        res += literals[i+1]*a if a < 4 else literals[i+1] + literals[i] if a == 4 else literals[i] + literals[i+1]*(a-5) if a < 9 else literals[i+1] + literals[i-1]
+        res += digits[i+1]*a if a < 4 \
+                else digits[i+1] + digits[i] if a == 4 \
+                else digits[i] + digits[i+1]*(a-5) if a < 9 \
+                else digits[i+1] + digits[i-1]
 
         i += 2
     
