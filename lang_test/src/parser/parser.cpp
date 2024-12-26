@@ -148,11 +148,7 @@ std::unique_ptr<StructDef> Parser::parse_struct_def(){
         if (tokens[idx] == ",") {
             idx++;
         }
-        std::unique_ptr<Type> field_type = parse_type();
-        idx++;
-        std::string field_name = tokens[idx];
-        idx++;
-        fields.push_back(std::make_unique<Variable>(field_type, field_name));
+        fields.push_back(parse_variable());
     }
     idx++;
     return std::make_unique<StructDef>(struct_name, fields);
@@ -175,6 +171,18 @@ std::unique_ptr<Type> Parser::parse_type(){
     return std::make_unique<Type>(type_name, subtypes);
 }
 
+std::unique_ptr<Expr> Parser::parse_line(){
+
+}
+
+std::unique_ptr<Variable> Parser::parse_variable(){
+    std::unique_ptr<Type> type = parse_type();
+    idx++;
+    std::string name = tokens[idx];
+    idx++;
+    return std::make_unique<Variable>(type, name);
+}
+
 std::unique_ptr<FunctionDef> Parser::parse_function_def(){
     idx++;
     std::string function_name = tokens[idx];
@@ -189,11 +197,7 @@ std::unique_ptr<FunctionDef> Parser::parse_function_def(){
         if (tokens[idx] == ",") {
             idx++;
         }
-        std::unique_ptr<Type> arg_type = parse_type();
-        idx++;
-        std::string arg_name = tokens[idx];
-        idx++;
-        args.push_back(std::make_unique<Variable>(arg_type, arg_name));
+        args.push_back(parse_variable());
     }
     idx++;
 

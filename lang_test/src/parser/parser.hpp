@@ -25,4 +25,6 @@ public:
     std::unique_ptr<StructDef> parse_struct_def();
     std::unique_ptr<FunctionDef> parse_function_def();
     std::unique_ptr<Type> parse_type();
+    std::unique_ptr<Expr> parse_line();
+    std::unique_ptr<Variable> parse_variable();
 };

@@ -137,6 +137,25 @@ fn find(int val, vec<int> arr) -> bool{
     false
 }
 
+int a = 22;
+find(3, [1,2,3]);
+a;
+a.asd().asdf().asdfg();
+
+
+
+int b = a + 2 * 22 + 3;
+
+var_b = Variable(int, b) //parse_variable()
+BinOp(=, Variable(int, b), nullptr) //parse_bin_op()
+BinOp(=, Variable(int, b), a)
+BinOp(=, Variable(int, b), BinOp(+, a, nullptr))
+BinOp(=, Variable(int, b), BinOp(+, a, 2))
+BinOp(=, Variable(int, b), BinOp(+, a, BinOp(*, 2, 22)))
+BinOp(=, Variable(int, b), BinOp(+, a, BinOp(+, BinOp(*, 2, 22), nullptr) ) )
+BinOp(=, Variable(int, b), BinOp(+, a, BinOp(+, BinOp(*, 2, 22), 3) ) )
+
+
 struct asd {
     int a;
     int b;
