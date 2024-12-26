@@ -5,9 +5,19 @@
 
 struct Expr {};
 
+struct File : Expr {
+    std::unique_ptr<Block> body;
+    File(std::unique_ptr<Block> body) : body(std::move(body)) {};
+};
+
 struct Block : public Expr {
     std::vector<std::unique_ptr<Expr>> exprs;
     Block(std::vector<std::unique_ptr<Expr>> exprs) : exprs(std::move(exprs)) {};
+};
+
+struct Return : public Expr {
+    std::unique_ptr<Expr> value;
+    Return(std::unique_ptr<Expr> value) : value(std::move(value)) {};
 };
 
 struct BinOp : public Expr {
@@ -26,8 +36,8 @@ struct Int : public Expr {
 
 struct Type : public Expr {
     std::string name;
-    std::vector<std::unique_ptr<Type>> types;
-    Type(std::string name, std::vector<std::unique_ptr<Type>> types) : name(name), types(types) {};
+    std::vector<std::unique_ptr<Type>> subtypes;
+    Type(std::string name, std::vector<std::unique_ptr<Type>> subtypes) : name(name), subtypes(subtypes) {};
 };
 
 struct Value : public Expr {
@@ -48,10 +58,10 @@ struct Assign : public Expr {
     Assign(std::string name, std::unique_ptr<Value> value) : name(name), value(std::move(value)) {};
 };
 
-struct Struct : public Expr {
+struct StructDef : public Expr {
     std::string name;
     std::vector<std::unique_ptr<Variable>> fields;
-    Struct(std::string name, std::vector<std::unique_ptr<Variable>> fields) : name(name), fields(std::move(fields)) {};
+    StructDef(std::string name, std::vector<std::unique_ptr<Variable>> fields) : name(name), fields(std::move(fields)) {};
 };
 
 struct FunctionDef : public Expr {
@@ -76,17 +86,17 @@ struct Array : public Expr {
     Array(int size, std::unique_ptr<Type> type, std::vector<std::unique_ptr<Value>> value) : size(size), type(std::move(type)), value(std::move(value)) {};
 };
 
-struct Index : public Expr {
-    std::unique_ptr<Struct> struct_name;
-    int index;
-    Index(std::unique_ptr<Struct> struct_name, int index) : struct_name(std::move(struct_name)), index(index) {};
-    Index(std::unique_ptr<Struct> stuct_name, std::string index) : struct_name(std::move(struct_name)) {
-        for (int i = 0; i < struct_name->fields.size(); i++) {
-            if (struct_name->fields[i]->name == index) {
-                this->index = i;
-                return;
-            }
-        }
-    };
-};
+// struct Index : public Expr {
+//     std::unique_ptr<StructDef> struct_name;
+//     int index;
+//     Index(std::unique_ptr<StructDef> struct_name, int index) : struct_name(std::move(struct_name)), index(index) {};
+//     Index(std::unique_ptr<StructDef> stuct_name, std::string index) : struct_name(std::move(struct_name)) {
+//         for (int i = 0; i < struct_name->fields.size(); i++) {
+//             if (struct_name->fields[i]->name == index) {
+//                 index = i;
+//                 return;
+//             }
+//         }
+//     };
+// };
 
