@@ -52,12 +52,6 @@ struct Variable : public Expr {
     Variable(std::unique_ptr<Type> type, std::string name) : type(std::move(type)), name(name) {};
 };
 
-struct Assign : public Expr {
-    std::string name;
-    std::unique_ptr<Value> value;
-    Assign(std::string name, std::unique_ptr<Value> value) : name(name), value(std::move(value)) {};
-};
-
 struct StructDef : public Expr {
     std::string name;
     std::vector<std::unique_ptr<Variable>> fields;

@@ -13,7 +13,6 @@
 - Type &check;
 - Value &check;
 - Variable &check;
-- Assign &check;
 - StructDef &check;
 - FunctionDef &check;
 - FunctionCall &check;
@@ -35,7 +34,6 @@
 - Type &check;
 - Value
 - Variable
-- Assign
 - StructDef &check;
 - FunctionDef &check;
 - FunctionCall
@@ -54,7 +52,6 @@
 - Type
 - Value
 - Variable
-- Assign
 - StructDef
 - FunctionDef
 - FunctionCall

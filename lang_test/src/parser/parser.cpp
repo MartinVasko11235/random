@@ -20,6 +20,18 @@ bool Parser::_is_token_end(char c){
     return token_ends.find(std::string(1, c)) != token_ends.end();
 }
 
+bool Parser::_is_function_name(std::string name){
+    return function_names.find(name) != function_names.end();
+}
+
+bool Parser::_is_struct_name(std::string name){
+    return struct_names.find(name) != struct_names.end();
+}
+
+bool Parser::_is_variable_name(std::string name){
+    return variable_names.find(name) != variable_names.end();
+}
+
 void Parser::lex(){
     for (int i = 0; i < file_content.size(); i++) {
         if (file_content[i] == '#') {
@@ -173,6 +185,12 @@ std::unique_ptr<Type> Parser::parse_type(){
 
 std::unique_ptr<Expr> Parser::parse_line(){
 
+    while (tokens[idx] != ";") {
+        
+        
+        
+        idx++;
+    }
 }
 
 std::unique_ptr<Variable> Parser::parse_variable(){

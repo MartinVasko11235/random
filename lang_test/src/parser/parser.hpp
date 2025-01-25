@@ -15,9 +15,15 @@ class Parser{
     std::vector<std::string> tokens;
     std::set<std::string> token_ends = {" ", "\n", "\t", "(", ")", "{", "}", ";", ":", ",", "[", "]", "*", "&", "+", "-", "/", "%", "<", ">", "=", "!", "|", "^", "~", "."};
     std::string current_token;
+    std::set<std::string> function_names;
+    std::set<std::string> struct_names;
+    std::set<std::string> variable_names;
     void lex();
     void merge_tokens();
     bool _is_token_end(char c);
+    bool _is_function_name(std::string name);
+    bool _is_struct_name(std::string name);
+    bool _is_variable_name(std::string name);
 public:
     Parser(std::string file_name);
     std::unique_ptr<File> parse_file();
