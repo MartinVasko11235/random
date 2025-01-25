@@ -1,0 +1,3 @@
+/home/martinvasko/game/build/CMakeFiles/game.dir
+/home/martinvasko/game/build/CMakeFiles/edit_cache.dir
+/home/martinvasko/game/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cerdcskutjxoy"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/maps/map.gd" id="1_qvua4"]
+[ext_resource type="Script" path="res://scenes/GameScene/maps/camera_2d.gd" id="2_r17xt"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_qvua4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, 250)
+script = ExtResource("2_r17xt")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://6gi484fcr4sn"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/units/unit.gd" id="1_88d46"]
+[ext_resource type="Texture2D" uid="uid://caflmd4qf5jyk" path="res://resources/swordsman(red).svg" id="1_dmi5v"]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_88d46")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dmi5v")

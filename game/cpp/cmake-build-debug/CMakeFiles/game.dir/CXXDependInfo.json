@@ -1,0 +1,18 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "/home/martinvasko/game/cmake-build-debug",
+	"dir-cur-src" : "/home/martinvasko/game",
+	"dir-top-bld" : "/home/martinvasko/game/cmake-build-debug",
+	"dir-top-src" : "/home/martinvasko/game",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/martinvasko/game/cmake-build-debug/CMakeFiles/game.dir"
+}

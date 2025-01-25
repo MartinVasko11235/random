@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b1u4u5ukeg0uy"
+
+[deps]
+
+files=["res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation"]
+
+source_file="res://resources/first_map.csv"
+dest_files=["res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation", "res://resources/first_map.0.translation"]
+
+[params]
+
+compress=true
+delimiter=0

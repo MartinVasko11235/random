@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cinrswwh520a"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/tiles/tile.gd" id="1_lk7v0"]
+[ext_resource type="Texture2D" uid="uid://bmp1corlvuxiu" path="res://resources/land_tile.svg" id="1_wb6um"]
+
+[node name="LandTile" type="Node2D"]
+script = ExtResource("1_lk7v0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("1_wb6um")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -100.0
+offset_right = 140.0
+offset_bottom = 40.0
+rotation = 0.785398
+
+[connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]
