@@ -163,4 +163,44 @@ struct asd {
     int b;
     int c;
     bool find(asd x, vec<asd> arr);
+}   
+
+
+fn asd(int a, vec<int> arr) -> bool{
+    for i in arr{
+        if i == a {
+            return true;
+        }
+    }
+    false
 }
+
+
+fn f int n -> int{
+    n * f n-1
+}
+
+fn c int n int k -> int{
+
+}
+
+fn read_int void -> int{
+    read -> to_int
+}
+
+fn solve void -> void{
+    var n = read_int;
+    
+}
+
+fn main void -> int{
+    var t = read -> to_int;
+    while t-- {
+        solve;
+    }
+
+
+    0
+}
+
+

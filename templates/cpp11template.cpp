@@ -16,12 +16,14 @@ using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statisti
 #define ALL(a) a.begin(), a.end()
 #define FOR(i, n)  for(int (i) = 0; (i) < (n); (i)++)
 #define RFOR(i, n) for(int (i) = (n)-1; (i) >= 0; i--)
-#define LOOP(i, a, b) for(int (i) = (a); (i) < (b); (i)++)
-#define RLOOP(i, a, b) for(int (i) = (b) - 1; (i) >= (a); (i)--)
+#define FORB(i, a, b) for(int (i) = (a); (i) < (b); (i)++)
+#define RFORB(i, a, b) for(int (i) = (b) - 1; (i) >= (a); (i)--)
 #define EACH(i, v) for(auto& i : v)
 
 #define EB emplace_back
 #define SZ size()
+#define ff first
+#define sd second
 
 template<typename T>
 using uset = unordered_set<T>;
@@ -72,9 +74,8 @@ void print(T t, Args ... args){cout << t << ' '; print(args ...);}
 #endif
 
 void solve(){
-
+    
 }
-
 
 int32_t main(){
 

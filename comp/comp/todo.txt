@@ -1,0 +1,1 @@
+nieco spravit s if else a return

@@ -6,15 +6,15 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-template<typename T>
+template <typename T>
 using indexed_tree = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 #define all(a) a.begin(), a.end()
-#define For(i, n)  for(int (i) = 0; (i) < (n); (i)++)
-#define rFor(i, n) for(int (i) = (n)-1; (i) >= 0; i--)
-#define loop(i, a, b) for(int (i) = (a); (i) < (b); (i)++)
-#define rloop(i, a, b) for(int (i) = (b) - 1; (i) >= (a); (i)--)
-#define each(i, v) for(auto& i : v)
+#define For(i, n) for (int(i) = 0; (i) < (n); (i)++)
+#define rFor(i, n) for (int(i) = (n) - 1; (i) >= 0; i--)
+#define loop(i, a, b) for (int(i) = (a); (i) < (b); (i)++)
+#define rloop(i, a, b) for (int(i) = (b) - 1; (i) >= (a); (i)--)
+#define each(i, v) for (auto &i : v)
 
 #define uset unordered_set
 #define umap unordered_map
@@ -35,87 +35,115 @@ typedef vector<pair<int, int>> vpii;
 typedef vector<vector<pair<int, int>>> vvpii;
 
 const int mod = 1'000'000'007;
-const int inf = LONG_LONG_MAX/2;
+const int inf = LONG_LONG_MAX / 2;
 
 const string yes = "Yes";
 const string no = "No";
 
-void __print(int x) {cerr << x;}
-void __print(long x) {cerr << x;}
-void __print(unsigned x) {cerr << x;}
-void __print(unsigned long x) {cerr << x;}
-void __print(unsigned long long x) {cerr << x;}
-void __print(float x) {cerr << x;}
-void __print(double x) {cerr << x;}
-void __print(long double x) {cerr << x;}
-void __print(char x) {cerr << '\'' << x << '\'';}
-void __print(const char *x) {cerr << '\"' << x << '\"';}
-void __print(const string &x) {cerr << '\"' << x << '\"';}
-void __print(bool x) {cerr << (x ? "true" : "false");}
+void __print(int x) { cerr << x; }
+void __print(long x) { cerr << x; }
+void __print(unsigned x) { cerr << x; }
+void __print(unsigned long x) { cerr << x; }
+void __print(unsigned long long x) { cerr << x; }
+void __print(float x) { cerr << x; }
+void __print(double x) { cerr << x; }
+void __print(long double x) { cerr << x; }
+void __print(char x) { cerr << '\'' << x << '\''; }
+void __print(const char *x) { cerr << '\"' << x << '\"'; }
+void __print(const string &x) { cerr << '\"' << x << '\"'; }
+void __print(bool x) { cerr << (x ? "true" : "false"); }
 
-template<typename T, typename V>
-void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ", "; __print(x.second); cerr << '}';}
-template<typename T>
-void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? ", " : ""), __print(i); cerr << "}";}
-void _print() {cerr << "]\n";}
+template <typename T, typename V>
+void __print(const pair<T, V> &x)
+{
+    cerr << '{';
+    __print(x.first);
+    cerr << ", ";
+    __print(x.second);
+    cerr << '}';
+}
+template <typename T>
+void __print(const T &x)
+{
+    int f = 0;
+    cerr << '{';
+    for (auto &i : x)
+        cerr << (f++ ? ", " : ""), __print(i);
+    cerr << "}";
+}
+void _print() { cerr << "]\n"; }
 template <typename T, typename... V>
-void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
+void _print(T t, V... v)
+{
+    __print(t);
+    if (sizeof...(v))
+        cerr << ", ";
+    _print(v...);
+}
 
 #ifdef ASDFG
-#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
+#define debug(x...)               \
+    cerr << "[" << #x << "] = ["; \
+    _print(x)
 #else
 #define debug(x...)
 #endif
 
-
-struct Solution{
+struct Solution
+{
 
     bool multiple_test_case = true;
     bool is_interactive = false;
 
-    void solve(){
+    void solve()
+    {
         int a, b, c;
         cin >> a >> b >> c;
 
-        if ((a+b+c)%2){
+        if ((a + b + c) % 2)
+        {
             cout << -1 << '\n';
             return;
         }
 
         int res = 0;
 
-        For(i, a+1){
-            res = max(res, a + min(b-i, c - (a-i)));
+        For(i, a + 1)
+        {
+            res = max(res, a + min(b - i, c - (a - i)));
         }
 
         cout << res << '\n';
     }
-
 };
 
-int32_t main(){
+int32_t main()
+{
 
     Solution solution;
 
-    if (!solution.is_interactive){
+    if (!solution.is_interactive)
+    {
         ios_base::sync_with_stdio(false);
         cin.tie(NULL);
 
-        #ifdef ASDFG
+#ifdef ASDFG
         freopen("in.txt", "r", stdin);
         freopen("out.txt", "w", stdout);
-        #endif
+#endif
     }
 
-    #ifdef ASDFG 
+#ifdef ASDFG
     freopen("log.txt", "w", stderr);
-    #endif
-    
+#endif
+
     int _t = 1;
 
-    if (solution.multiple_test_case) cin >> _t;
+    if (solution.multiple_test_case)
+        cin >> _t;
 
-    while(_t--) solution.solve();
+    while (_t--)
+        solution.solve();
 
     return 0;
 }
